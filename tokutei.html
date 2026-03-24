@@ -4,36 +4,150 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>特定商取引法に基づく表記｜Insight Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f4f6;--panel:#fff;--accent:#f97316;--accent-soft:rgba(249,115,22,.12);--text-main:#111827;--text-sub:#6b7280;--border-soft:#e5e7eb;--nav-bg:#020617}
-*{box-sizing:border-box}
-body{margin:0;font-family:"Noto Sans JP",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#e5e7eb 0,#f9fafb 55%);color:var(--text-main);line-height:1.7}
-a{color:inherit;text-decoration:none}
-.container{width:100%;max-width:1100px;margin:0 auto;padding:0 20px}
-header{position:sticky;top:0;z-index:20;backdrop-filter:blur(16px);background:var(--nav-bg);border-bottom:1px solid rgba(148,163,184,.35);color:#e5e7eb}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;max-width:1100px;margin:0 auto}
-.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px}
-.logo-mark{width:28px;height:28px;border-radius:999px;background:radial-gradient(circle at 30% 20%,#f9fafb,#f59e0b 60%);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px;color:#111827}
-nav{display:flex;gap:18px;font-size:13px;color:#e5e7eb}
-nav a{opacity:.9}nav a:hover{opacity:1;color:#fbbf24}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:transform .08s,box-shadow .08s,background .1s;white-space:nowrap;gap:6px}
-.btn-primary{background:linear-gradient(135deg,#fed7aa,#f97316);color:#111827;box-shadow:0 10px 24px rgba(249,115,22,.35)}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 32px rgba(249,115,22,.5)}
-main{padding:56px 0 80px}
-.page-title{font-size:26px;font-weight:700;margin-bottom:8px}
-.page-sub{font-size:14px;color:var(--text-sub);margin-bottom:32px}
-.legal-card{max-width:900px;margin:0 auto;border-radius:20px;background:var(--panel);border:1px solid var(--border-soft);box-shadow:0 16px 40px rgba(15,23,42,.08);padding:24px 24px 28px}
-.legal-card-title{font-size:18px;font-weight:600;margin-bottom:16px}
-.legal-table{width:100%;border-collapse:collapse;font-size:13px}
-.legal-table th,.legal-table td{padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;text-align:left}
-.legal-table th{width:28%;background:#f9fafb;font-weight:500;color:#374151}
-.legal-table tr:last-child th,.legal-table tr:last-child td{border-bottom:none}
-.legal-note{margin-top:16px;font-size:12px;color:var(--text-sub)}
-footer{border-top:1px solid rgba(148,163,184,.35);padding:16px 0 26px;background:var(--nav-bg);font-size:11px;color:#9ca3af;margin-top:40px}
-.footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center}
-.footer-links{display:flex;gap:14px;flex-wrap:wrap}
-.footer-links a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-@media(max-width:880px){nav{display:none}.container{padding:0 16px}main{padding-top:44px}.legal-card{padding:20px 16px 22px}.legal-table th,.legal-table td{display:block;width:100%;border-bottom:none;padding:6px 0}.legal-table tr{border-bottom:1px solid #e5e7eb;padding:6px 0}.legal-table tr:last-child{border-bottom:none}.legal-table th{background:transparent;font-size:12px;color:#6b7280;padding-top:10px}.legal-table td{padding-bottom:8px}}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #4F46E5;
+  --primary-light: #6366F1;
+  --primary-dark: #3730A3;
+  --primary-50: #EEF2FF;
+  --bg: #FAFBFC;
+  --bg-alt: #F1F5F9;
+  --text: #1E293B;
+  --text-light: #64748B;
+  --text-muted: #94A3B8;
+  --border: #E2E8F0;
+  --white: #FFFFFF;
+  --navy: #0F172A;
+  --shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.1);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text); background: var(--bg);
+  line-height: 1.8; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* HEADER */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  height: 72px; display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-size: 1.2rem; font-weight: 900; color: var(--white);
+  text-decoration: none; display: flex; align-items: center; gap: 10px;
+}
+.logo-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.2rem; font-weight: 900;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+nav { display: flex; align-items: center; gap: 28px; }
+nav a {
+  color: rgba(255, 255, 255, 0.7); text-decoration: none;
+  font-size: 0.88rem; font-weight: 500; transition: color 0.2s;
+}
+nav a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--primary); color: var(--white) !important;
+  padding: 10px 24px; border-radius: 8px; font-weight: 700;
+  transition: background 0.2s, transform 0.2s !important;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+.nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+/* MAIN */
+main { padding: 64px 24px 80px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.page-header { text-align: center; margin-bottom: 48px; }
+.page-title {
+  font-size: 1.75rem; font-weight: 900; color: var(--navy); margin-bottom: 12px;
+}
+.page-sub {
+  font-size: 0.95rem; color: var(--text-light); max-width: 640px; margin: 0 auto;
+}
+
+/* LEGAL CARD */
+.legal-card {
+  max-width: 900px; margin: 0 auto;
+  border-radius: 20px; background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  padding: 40px 44px 44px;
+}
+.legal-card-intro {
+  font-size: 0.9rem; color: var(--text-light); margin-bottom: 32px;
+  padding-bottom: 24px; border-bottom: 1px solid var(--border);
+  line-height: 1.9;
+}
+.legal-card-title {
+  font-size: 1.15rem; font-weight: 700; color: var(--navy);
+  margin-bottom: 24px;
+}
+.legal-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.legal-table th, .legal-table td {
+  padding: 16px 18px; border-bottom: 1px solid var(--border);
+  vertical-align: top; text-align: left; line-height: 1.8;
+}
+.legal-table th {
+  width: 28%; background: var(--bg-alt); font-weight: 600;
+  color: var(--navy); border-right: 1px solid var(--border);
+}
+.legal-table td { color: var(--text); }
+.legal-table tr:last-child th, .legal-table tr:last-child td { border-bottom: none; }
+.legal-note {
+  margin-top: 24px; font-size: 0.8rem; color: var(--text-muted);
+  padding-top: 16px; border-top: 1px solid var(--border);
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy); color: rgba(255, 255, 255, 0.5);
+  padding: 32px 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 40px;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  align-items: center; gap: 12px;
+}
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a {
+  color: rgba(255, 255, 255, 0.5); font-size: 0.8rem;
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-copy { font-size: 0.75rem; }
+
+@media (max-width: 768px) {
+  nav { display: none; }
+  main { padding: 48px 16px 60px; }
+  .legal-card { padding: 24px 20px 28px; border-radius: 16px; }
+  .legal-table th, .legal-table td {
+    display: block; width: 100%; border-bottom: none; padding: 6px 0;
+    border-right: none;
+  }
+  .legal-table tr { border-bottom: 1px solid var(--border); padding: 8px 0; }
+  .legal-table tr:last-child { border-bottom: none; }
+  .legal-table th {
+    background: transparent; font-size: 0.8rem;
+    color: var(--text-muted); padding-top: 12px;
+  }
+  .legal-table td { padding-bottom: 10px; }
+}
 </style>
 </head>
 <body>
@@ -41,7 +155,7 @@ footer{border-top:1px solid rgba(148,163,184,.35);padding:16px 0 26px;background
 <header>
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <div class="logo-mark">I</div>
+      <div class="logo-icon">I</div>
       Insight Lab
     </a>
     <nav>
@@ -49,17 +163,19 @@ footer{border-top:1px solid rgba(148,163,184,.35);padding:16px 0 26px;background
       <a href="index.html#pricing">料金</a>
       <a href="index.html#how">使い方</a>
       <a href="index.html#faq">FAQ</a>
+      <a href="index.html#cta" class="nav-cta">7日間無料で試す</a>
     </nav>
-    <a href="#" class="btn btn-primary">LINE友だち追加</a>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <h1 class="page-title">特定商取引法に基づく表記</h1>
+    <div class="page-header">
+      <h1 class="page-title">特定商取引法に基づく表記</h1>
+    </div>
 
     <div class="legal-card">
-      <p>Insight Lab（以下「当事業者」）が提供するサービス（行動管理Bot 等）に関する販売事業者情報を、特定商取引法第11条に基づき表示しています。</p>
+      <p class="legal-card-intro">Insight Lab（以下「当事業者」）が提供するサービス（行動管理Bot 等）に関する販売事業者情報を、特定商取引法第11条に基づき表示しています。</p>
 
       <h2 class="legal-card-title">事業者情報</h2>
 
@@ -104,14 +220,12 @@ footer{border-top:1px solid rgba(148,163,184,.35);padding:16px 0 26px;background
 </main>
 
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <p>&copy; Insight Lab</p>
-      <nav class="footer-links">
-        <a href="tokutei.html">特定商取引法に基づく表記</a>
-        <a href="terms.html">利用規約</a>
-        <a href="privacy.html">プライバシーポリシー</a>
-      </nav>
+  <div class="footer-inner">
+    <p class="footer-copy">&copy; 2026 Insight Lab All rights reserved.</p>
+    <div class="footer-links">
+      <a href="tokutei.html">特定商取引法に基づく表記</a>
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
     </div>
   </div>
 </footer>
