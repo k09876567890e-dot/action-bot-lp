@@ -289,15 +289,16 @@ section { padding: 72px 20px; }
   position: relative;
 }
 .concept-inner::before {
-  content: '\201C'; position: absolute; top: -24px; left: 50%; transform: translateX(-50%);
-  font-size: 6rem; line-height: 1; color: var(--primary-50);
+  content: '\201C'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  font-size: 5rem; line-height: 1; color: var(--primary-50);
   font-family: 'Inter', serif; font-weight: 900;
-  pointer-events: none;
+  pointer-events: none; z-index: 0;
 }
 .concept-quote {
   font-size: 1.2rem; font-weight: 900;
   line-height: 1.85; margin-bottom: 20px; color: var(--navy);
-  position: relative;
+  position: relative; z-index: 1;
+  padding-top: 32px;
 }
 .concept-quote .accent { color: var(--primary); }
 .concept-sub {
@@ -337,11 +338,17 @@ section { padding: 72px 20px; }
   background: var(--bg-alt);
   position: relative;
 }
-.feature-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.feature-grid {
+  display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0 -20px; padding: 0 20px 16px;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.feature-grid::-webkit-scrollbar { display: none; }
 .feature-card {
   padding: 24px 20px; border-radius: var(--radius); background: var(--white);
   border: 1px solid var(--border); transition: all 0.3s;
   position: relative; overflow: hidden;
+  min-width: 280px; max-width: 320px; flex-shrink: 0; scroll-snap-align: start;
 }
 .feature-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -452,11 +459,18 @@ section { padding: 72px 20px; }
   background: radial-gradient(ellipse, rgba(79,70,229,0.04) 0%, transparent 70%);
   pointer-events: none;
 }
-.pricing-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 400px; margin: 0 auto; position: relative; }
+.pricing-grid {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0 -20px; padding: 0 20px 16px;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  position: relative;
+}
+.pricing-grid::-webkit-scrollbar { display: none; }
 .pricing-card {
   background: var(--white); border-radius: var(--radius-lg); padding: 32px 24px;
   border: 1px solid var(--border); text-align: center;
   transition: all 0.3s; position: relative;
+  min-width: 280px; max-width: 320px; flex-shrink: 0; scroll-snap-align: start;
 }
 .pricing-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
 .pricing-card.popular {
@@ -493,7 +507,13 @@ section { padding: 72px 20px; }
   margin-bottom: 4px; letter-spacing: -0.03em; line-height: 1.2;
 }
 .pricing-price span { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0; }
-.pricing-desc { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 24px; line-height: 1.6; }
+.pricing-desc { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 8px; line-height: 1.6; }
+.pricing-annual {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; color: var(--text-muted); margin-bottom: 20px;
+  background: var(--bg-alt); padding: 5px 12px; border-radius: 6px;
+}
+.pricing-annual strong { color: var(--primary); font-weight: 700; }
 .pricing-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
 .pricing-features { list-style: none; text-align: left; margin-bottom: 24px; }
 .pricing-features li {
@@ -624,7 +644,11 @@ footer {
   .problem-card { flex-direction: column; padding: 32px; text-align: center; }
   .problem-card .p-icon { margin: 0 auto 16px; }
 
-  .feature-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .feature-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    overflow: visible; margin: 0; padding: 0;
+  }
+  .feature-card { min-width: unset; max-width: unset; }
   .steps { grid-template-columns: repeat(3, 1fr); gap: 48px; }
 
   .testimonial-scroll {
@@ -633,7 +657,11 @@ footer {
   }
   .testimonial-card { min-width: unset; max-width: unset; }
 
-  .pricing-grid { grid-template-columns: repeat(3, 1fr); max-width: 1000px; gap: 20px; }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1000px; gap: 20px;
+    overflow: visible; margin: 0 auto; padding: 0;
+  }
+  .pricing-card { min-width: unset; max-width: unset; }
 
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; }
   .footer-brand { margin-bottom: 0; max-width: 300px; }
@@ -656,7 +684,7 @@ footer {
       <a href="#how">使い方</a>
       <a href="#pricing">料金</a>
       <a href="#faq">FAQ</a>
-      <a href="#cta" class="nav-cta">7日間無料で試す</a>
+      <a href="https://lin.ee/7KtVs8d" class="nav-cta">7日間無料で試す</a>
     </nav>
   </div>
 </header>
@@ -674,7 +702,7 @@ footer {
     </h1>
     <p class="hero-desc">目標・スケジュール・期限を入力するだけで、AIがロードマップを自動生成。毎日の進捗をLINEで報告し、達成率や遅延をリアルタイムで把握できます。</p>
     <div class="hero-buttons">
-      <a href="#cta" class="btn btn-primary">7日間無料で始める</a>
+      <a href="https://lin.ee/7KtVs8d" class="btn btn-primary">7日間無料で始める</a>
       <a href="#features" class="btn btn-ghost">機能を見る</a>
     </div>
     <p class="hero-trial">7日間Basicプラン相当の機能が無料 / クレジットカード不要</p>
@@ -952,7 +980,7 @@ footer {
           <li class="disabled"><span class="pf-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>相談モード</li>
           <li class="disabled"><span class="pf-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>エッセイ添削</li>
         </ul>
-        <a href="#cta" class="btn btn-outline btn-pricing">無料で始める</a>
+        <a href="https://lin.ee/7KtVs8d" class="btn btn-outline btn-pricing">無料で始める</a>
       </div>
 
       <!-- BASIC -->
@@ -964,6 +992,7 @@ footer {
         <div class="pricing-plan-name">Basic</div>
         <div class="pricing-price">&yen;980<span>/月</span></div>
         <div class="pricing-desc">AI分析で目標達成を加速するプラン</div>
+        <div class="pricing-annual">年額 <strong>&yen;9,800</strong>（2ヶ月分お得）</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="pf-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>1日1回の進捗報告</li>
@@ -976,7 +1005,7 @@ footer {
           <li class="disabled"><span class="pf-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>相談モード</li>
           <li class="disabled"><span class="pf-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>エッセイ添削</li>
         </ul>
-        <a href="#cta" class="btn btn-primary btn-pricing">Basicを始める</a>
+        <a href="https://lin.ee/7KtVs8d" class="btn btn-primary btn-pricing">Basicを始める</a>
       </div>
 
       <!-- EXPERT -->
@@ -987,6 +1016,7 @@ footer {
         <div class="pricing-plan-name">Expert</div>
         <div class="pricing-price">&yen;2,980<span>/月</span></div>
         <div class="pricing-desc">全機能フルアクセス</div>
+        <div class="pricing-annual">年額 <strong>&yen;29,800</strong>（2ヶ月分お得）</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="pf-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>1日1回の進捗報告</li>
@@ -999,7 +1029,7 @@ footer {
           <li><span class="pf-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>相談モード（壁打ち）</li>
           <li><span class="pf-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>エッセイ添削・レビュー</li>
         </ul>
-        <a href="#cta" class="btn btn-outline btn-pricing">Expertを始める</a>
+        <a href="https://lin.ee/7KtVs8d" class="btn btn-outline btn-pricing">Expertを始める</a>
       </div>
     </div>
   </div>
@@ -1039,7 +1069,7 @@ footer {
 <section class="cta" id="cta">
   <h2 class="fade-up">まずは7日間、試してみてください。</h2>
   <p class="fade-up">LINE友だち追加だけで、<br>すぐに目標設定を始められます。</p>
-  <a href="#" class="btn btn-cta fade-up">LINE友だち追加で始める</a>
+  <a href="https://lin.ee/7KtVs8d" class="btn btn-cta fade-up">LINE友だち追加で始める</a>
   <p class="cta-sub fade-up">クレジットカード不要 / 7日間Basicプラン相当</p>
 </section>
 
